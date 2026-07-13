@@ -1,0 +1,24 @@
+﻿@model TMDbMovies.Models.MovieResult
+
+<form method="post">
+    <input type="text" name="title" placeholder="Enter movie title" required />
+    <button type="submit">Search</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <p style="color:red">@ViewBag.Error</p>
+}
+
+@if (Model != null)
+{
+    <h2>@Model.Title (@Model.ReleaseDate?.Substring(0, 4))</h2>
+
+    @if (!string.IsNullOrEmpty(Model.FullPosterUrl))
+    {
+        <img src="@Model.FullPosterUrl" width="200" />
+    }
+
+    <p><strong>Rating:</strong> @Model.VoteAverage / 10</p>
+    <p>@Model.Overview</p>
+}
